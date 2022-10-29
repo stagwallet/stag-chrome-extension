@@ -2,8 +2,6 @@
 
 import axios from 'axios'
 
-import { v4 as uuid } from 'uuid'
-
 import log from './log'
 
 import { Balance } from './wallet'
@@ -29,15 +27,14 @@ export class BlockchairApiError extends Error {}
 
 export async function getAddress(coin: string, address: string) {
 
-  const trace = uuid()
 
   try {
 
-    log.debug('blockchair.api.dashboards.address', { address, coin, trace })
+    log.debug('blockchair.api.dashboards.address', { address, coin })
 
     const { data } = await axios.get(`https://api.blockchair.com/${coin.toLowerCase()}/dashboards/address/${address}`)
 
-    log.debug('blockchair.api.dashboards.address.result', { trace, data })
+    log.debug('blockchair.api.dashboards.address.result', { data })
 
     return data
 

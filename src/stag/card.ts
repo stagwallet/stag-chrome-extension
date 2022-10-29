@@ -3,6 +3,11 @@ import BigNumber from 'bignumber.js'
 
 import * as bitcore from 'bsv'
 
+import { Balance, convertBalance } from './balance'
+
+import * as blockchair from './blockchair'
+import log from './log';
+
 export interface Utxo {
     txid: string;
     vout: number;
@@ -22,18 +27,10 @@ export class Card {
       privatekey: string,
       address?: string;
     }) {
-      this.unspent = []
-      this.asset = params.asset
-      this.privatekey = params.privatekey
-
-      if (params.address) {
-        this.address = params.address
-      }
-    
-      if (bitcore.PrivateKey) {
+        this.unspent = []
+        this.asset = params.asset
+        this.privatekey = params.privatekey
         this.address = new bitcore.PrivateKey(this.privatekey).toAddress().toString();
-      }
-      
     }
     
     async getUnspent() {
@@ -74,9 +71,7 @@ export class Card {
     }
   
     async balance(): Promise<Balance> {
-  
-      const asset = this.asset
-  
+    
       let rpc = getRPC(this.asset)
   
       var value;
@@ -149,7 +144,6 @@ export class Card {
         }
   
       }
-  
   
     }
   
