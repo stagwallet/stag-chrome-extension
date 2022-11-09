@@ -8,6 +8,7 @@ import { chromeExtension, simpleReloader } from 'rollup-plugin-chrome-extension'
 import { emptyDir } from 'rollup-plugin-empty-dir'
 import zip from 'rollup-plugin-zip'
 import replace from '@rollup/plugin-replace'
+import json from "@rollup/plugin-json";
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -28,6 +29,7 @@ export default {
     simpleReloader(),
     resolve(),
     commonjs(),
+    json(),
     typescript(),
     // Empties the output dir before a new build
     emptyDir(),
