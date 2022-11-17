@@ -1,1 +1,1 @@
-console.log('background script')
+console.log('STAG BACKGROUND SCRIPT')

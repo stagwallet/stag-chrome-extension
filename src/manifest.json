@@ -15,8 +15,13 @@
       ]
     }
   ],
+  "web_accessible_resources": ["inject.ts"],
   "browser_action": {
     "default_popup": "pages/popup/index.html"
   },
-  "name": "stag"
+  "name": "stag",
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ]
 }
